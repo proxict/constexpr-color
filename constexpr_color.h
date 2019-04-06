@@ -26,7 +26,7 @@ constexpr int hexToDec(const char c) {
 template<int TSize>
 constexpr Rgb toRgb(char const (&str)[TSize]) {
     constexpr int len = TSize - 1;
-    static_assert(len == 7, "Invalid format, expected #ffffff format...");
+    static_assert(len == 7, "Invalid format, expected #rrggbb format...");
     const char* ptr = str;
     Rgb rgb;
     rgb.r = (hexToDec(ptr[1]) << 4 | hexToDec(ptr[2])) & 0xff;
