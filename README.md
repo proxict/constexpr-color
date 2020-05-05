@@ -3,19 +3,22 @@
 constexpr-color
 ---------------
 
-**constexpr-color** can convert a color written in a hexadecimal format like `#ffaf23` to an RGB format like `RGB(255, 175, 35)`
+**constexpr-color** can do conversions of colors from/to RGB, HSL and HEX in **compile time**.
 
- - Requires >= C++14 standard
+ - Written in C++11 standard
 
 Usage example:
 --------------
 ```c++
-#include <iostream>
-#include <constexpr_color.h>
+#include <constexpr-color/constexpr-color.hpp>
+#include <cstdio>
 
 int main() {
-    constexpr Rgb rgb = toRgb("#7EA3CE");
-    std::cout << "#7EA3CE == RGB(" << int(rgb.r) << ", " << int(rgb.g) << ", " << int(rgb.b) << ')' << std::endl;
-    return 0;
+    namespace cc = constexprColor;
+    static_assert(cc::toRgb("#7EA3CE") == cc::Rgb(126, 163, 206), "HEX to RGB failed");
+    static_assert(cc::toRgb(cc::Hsl(38, 1.0f, 0.569f)) == cc::Rgb(255, 174, 35), "HSL to RGB failed");
+    static_assert(cc::toHsl(cc::Rgb(197, 176, 140)) == cc::Hsl(38, 0.32948f, 0.660784f), "RGB to HSL failed");
+    static_assert(cc::toHsl("#C5B08C") == cc::Hsl(38, 0.32948f, 0.660784f), "HEX to HSL failed");
+    puts("Passed");
 }
 ```
