@@ -38,8 +38,8 @@ struct Hsl {
     constexpr Hsl()
         : hue(0), saturation(0.0f), lightness(0.0f) {}
 
-    constexpr Hsl(const unsigned int hue, const float saturation, const float lightness)
-        : hue(hue), saturation(saturation), lightness(lightness) {}
+    constexpr Hsl(const unsigned int hue_, const float saturation_, const float lightness_)
+        : hue(hue_), saturation(saturation_), lightness(lightness_) {}
 
     constexpr bool operator==(const Hsl& rhs) const {
         return hue == rhs.hue &&
